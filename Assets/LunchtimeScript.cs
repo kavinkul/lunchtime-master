@@ -61,6 +61,10 @@ public class LunchtimeScript : MonoBehaviour
 	
 	int correct;
 	
+	//Logging
+    static int moduleIdCounter = 1;
+    int moduleId;
+	
     private bool ContainsVowel()
     {
         return GetSerial().Any(ch => "AEIOU".Contains(ch));
@@ -74,6 +78,7 @@ public class LunchtimeScript : MonoBehaviour
 	
 	void Start ()
 	{
+		moduleId = moduleIdCounter++;
 		GetComponent<KMBombModule>().OnActivate += ActivateModule;
 	}
 	
@@ -242,21 +247,21 @@ public class LunchtimeScript : MonoBehaviour
 		cashafter = cashafter * 100;
 		cashafter = Mathf.Round(cashafter);
 
-		Debug.Log("ContainsVowel " + ContainsVowel());
-		Debug.Log("vegetables " + vegetables);
-		Debug.Log("dairy " + dairy);
-		Debug.Log("twovowels " + twovowels);
-		Debug.Log("case 1 " + case1);
-		Debug.Log("case 2 " + case2);
-		Debug.Log("case 3 " + case3);
-		Debug.Log("unicorn " + unicorn);
-		Debug.Log("leftovers " + leftovers);
-		Debug.Log("sandwiches " + sandwiches);
-		Debug.Log("plates " + plates);
-		Debug.Log("cash " + cash);
-		Debug.Log("moneyChanged " + moneyChanged);
-		Debug.Log("correct " + correct);
-		Debug.Log("cashafter " + cashafter);
+		Debug.LogFormat("[Lunchtime #{0}] ContainsVowel {1}", moduleId, ContainsVowel());
+		Debug.LogFormat("[Lunchtime #{0}] vegetables {1}", moduleId, vegetables);
+		Debug.LogFormat("[Lunchtime #{0}] dairy {1}", moduleId, dairy);
+		Debug.LogFormat("[Lunchtime #{0}] twovowels {1}", moduleId, twovowels);
+		Debug.LogFormat("[Lunchtime #{0}] case 1 {1}", moduleId, case1);
+		Debug.LogFormat("[Lunchtime #{0}] case 2 {1}", moduleId, case2);
+		Debug.LogFormat("[Lunchtime #{0}] case 3 {1}", moduleId, case3);
+		Debug.LogFormat("[Lunchtime #{0}] unicorn {1}", moduleId, unicorn);
+		Debug.LogFormat("[Lunchtime #{0}] leftovers {1}", moduleId, leftovers);
+		Debug.LogFormat("[Lunchtime #{0}] sandwiches {1}", moduleId, sandwiches);
+		Debug.LogFormat("[Lunchtime #{0}] plates {1}", moduleId, plates);
+		Debug.LogFormat("[Lunchtime #{0}] cash {1}", moduleId, cash);
+		Debug.LogFormat("[Lunchtime #{0}] moneyChanged {1}", moduleId, moneyChanged);
+		Debug.LogFormat("[Lunchtime #{0}] correct {1}", moduleId, correct);
+		Debug.LogFormat("[Lunchtime #{0}] cashafter {1}", moduleId, cashafter);
 	}
 	
 	private IEnumerator loop()
@@ -405,11 +410,11 @@ public class LunchtimeScript : MonoBehaviour
 	
 	protected bool Striked()
 	{
-		Debug.Log("mins " + mins);
-		Debug.Log("secs " + secs);
-		Debug.Log("chosen food " + food);
-		Debug.Log("correct " + correct);
-		Debug.Log("money left " + cashafter);
+		Debug.LogFormat("[Lunchtime #{0}] mins {1}", moduleId, mins);
+		Debug.LogFormat("[Lunchtime #{0}] secs {1}", moduleId, secs);
+		Debug.LogFormat("[Lunchtime #{0}] chosen food {1}", moduleId, food);
+		Debug.LogFormat("[Lunchtime #{0}] correct {1}", moduleId, correct);
+		Debug.LogFormat("[Lunchtime #{0}] money left {1}", moduleId, cashafter);
 		BombModule.HandleStrike();
 		return false;
 	}
